@@ -44,7 +44,7 @@ df['rent'] = df['rent'].astype(float)
 df['price per sq mtr'].replace(' ', np.nan, inplace=True)
 df.dropna(subset=['price per sq mtr'], inplace=True)
 
-X_var = df[['price per sq mtr','rooms','size','rent']].values
+X_var = df[['rooms','size','rent']].values
 y_var = df['price'].values
 
 X_train, X_test, y_train, y_test = train_test_split(X_var, y_var, test_size = 0.2, random_state = 0)

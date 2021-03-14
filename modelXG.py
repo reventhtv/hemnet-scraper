@@ -155,3 +155,11 @@ with open('regions.json', 'w', encoding='utf8') as fp:
     json.dump(enc.encoder_dict_, fp, ensure_ascii=False)
 
 regressor.save_model('hemnet-pred.model')
+#Re-Normalizing price by multiplying with 1000000
+y_test_real = y_test * 1000000
+
+df_predictions = pd.DataFrame({"Id": list(range(len(y_train),len(price_predictions)+len(y_train))), "Predicted price": price_predictions, "Actual price": y_test_real})
+print(len(X_test))
+print(len(y_train))
+print(df_predictions)
+df_predictions.to_csv("priceprediction.csv", index=False, header=True)
