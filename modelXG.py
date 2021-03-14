@@ -140,6 +140,8 @@ price_predictions = y_pred * 1000000
 print(len(y_pred))
 print(y_pred)
 print(price_predictions)
+price_pred_round = np.round(price_predictions, 2)
+print(price_pred_round)
 # evaluate predictions
 mse = mean_squared_error(y_test, predictions)
 print("Mean Square Error: %.2f%%" % mse)
@@ -158,7 +160,7 @@ regressor.save_model('hemnet-pred.model')
 #Re-Normalizing price by multiplying with 1000000
 y_test_real = y_test * 1000000
 
-df_predictions = pd.DataFrame({"Id": list(range(len(y_train),len(price_predictions)+len(y_train))), "Predicted price": price_predictions, "Actual price": y_test_real})
+df_predictions = pd.DataFrame({"Id": list(range(len(y_train),len(price_predictions)+len(y_train))), "Predicted price": price_pred_round, "Actual price": y_test_real})
 print(len(X_test))
 print(len(y_train))
 print(df_predictions)
